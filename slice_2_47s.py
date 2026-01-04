@@ -8,6 +8,7 @@ import argparse
 def process_file(file_path, input_root, output_root, segment_length=2097152):
     try:
         waveform, sample_rate = torchaudio.load(file_path)
+        print(f"Sample rate: {sample_rate}, Length: {waveform.shape}")
         if sample_rate != 44100:
             resampler = T.Resample(sample_rate, 44100)
             waveform = resampler(waveform)
@@ -34,7 +35,7 @@ def slice_audio_files_parallel(input_root, output_root, segment_length=2097152, 
     mp3_files = []
     for root, _, files in os.walk(input_root):
         for file in files:
-            if file.lower().endswith('.mp3'):
+            if file.lower().endswith('.wav'):
                 mp3_files.append(os.path.join(root, file))
     
     # Process files in parallel with a progress bar
