@@ -58,5 +58,5 @@ if __name__ == "__main__":
     input_folder = args.input_folder # /mnt/gestalt/home/lonian/datasets/mtg_full/ "/mnt/gestalt/database/FMA/fma_track/audio"
     output_folder = args.output_folder
     # Slice all files, discarding any under 2,097,152 samples
-    slice_audio_files_parallel(input_folder, output_folder, segment_length=2097152, num_workers=20)
-    #slice_audio_files_parallel(input_folder, output_folder, segment_length=1323000, num_workers=20)
+    #slice_audio_files_parallel(input_folder, output_folder, segment_length=2097152, num_workers=20)
+    slice_audio_files_parallel(input_folder, output_folder, segment_length=1323000, num_workers=20)
