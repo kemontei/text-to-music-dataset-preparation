@@ -6,7 +6,9 @@ Follow the instructions below:
 1. Clone the github repo, and install the required packages:
 ```
 git clone https://github.com/fundwotsai2001/Text-to-music-dataset-preparation.git
-cd Text-to-music-dataset-preparation
+cd text-to-music-dataset-preparation/
+conda create -n data_prep_mcl python=3.11
+conda activate data_prep_mcl
 pip install -r requirements.txt
 ```
 
@@ -20,13 +22,16 @@ wget https://os.unil.cloud.switch.ch/fma/fma_full.zip
 ```
 `./mtg-full` is the output directory.
 
-3. Resample the audio to 44100 hz, and slice it to shape (2, 2097152), this is optional if you are not using MuseControlLite. You can modify the audio shape with your preference.
+3. Resample the audio to 44100 hz, and slice it to the required shape. For 47s -> (2, 2097152), for 30s -> (2, 1323000). This is optional if you are not using MuseControlLite. You can modify the audio shape with your preference.
 ```
 python slice_2_47s.py --input_folder ./mtg-full --output_folder ./mtg-full-47s
+python slice_2_30s.py --input_folder /home/kidrm2/workspace/braintwin/data/spotify_sleep_dataset/sleep_only --output_folder /home/kidrm2/workspace/braintwin/data/spotify_sleep_dataset/sleep_only_30s
 ```
+
 4. Use sound event detection to filter out audio that contains vocal.
 ```
 python ./panns_inference/filter_vocal.py --audio_folder ./mtg-full-47s --json_path ./filtered_vocal_all.json
+python ./panns_inference/filter_vocal.py --audio_folder /home/kidrm2/workspace/braintwin/data/spotify_sleep_dataset/sleep_only_30s --json_path ./filtered_vocal_all.json
 ```
 `--json_path` is the output json file that contains audio paths that do not contain vocal.
 
