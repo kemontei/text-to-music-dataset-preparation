@@ -127,7 +127,7 @@ if __name__ == '__main__':
             # Check each sample in the batch for vocal-related events
             for i, file_path in enumerate(file_paths):
                 framewise_output = batch_framewise_outputs[i]
-                if not detect_vocal_in_sed(framewise_output, vocal_keywords, threshold=0.02):
+                if not detect_vocal_in_sed(framewise_output, vocal_keywords, threshold=0.92):
                     non_vocal_files.append(file_path)
         torch.cuda.empty_cache()
     # Save the list of detected vocal files to a JSON file
