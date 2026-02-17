@@ -1,3 +1,4 @@
+# Note: check that audio files don't have wav, mp3 or pth in the name as .replace is used in MCL and this can cause unexpected results.
 import os
 import torchaudio
 from concurrent.futures import ProcessPoolExecutor, as_completed
